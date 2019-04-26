@@ -58,7 +58,7 @@ class JjySpider(scrapy.Spider):
 
     def spider_closed(self, spider):
 
-        logging.info('爬取结束了...')
+        logging.info('爬取结束了..')
 
     def start_requests(self):
         while 1:
