@@ -174,6 +174,8 @@ class ProxyMiddleware(object):
 
                 # 重试一次无效把状态修改成 100
                 realUid = request.meta.get('realUid')
+                print('*' * 30)
+                print(realUid, type(realUid))
                 spider.sjjy.update({'realUid': realUid}, {'$set': {'status': 100}})
                 logging.warning('重试一次无效把状态修改成 100...')
                 return response
