@@ -80,6 +80,7 @@ class JjySpider(scrapy.Spider):
                         for img_url in info['img_url_li'][0]:
                             # print(img_url)
                             meta = {}
+                            meta['realUid'] = realUid
                             img_id = re.search(r'(.*?).jpg', img_url).group(1)[-7:]
                             head = re.search(r'http://(.*?)/', img_url).group(1)
                             header = {
