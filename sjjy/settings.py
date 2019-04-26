@@ -29,6 +29,8 @@ LOG_FILE = "mySpider.log"
 
 DOWNLOAD_TIMEOUT = 10
 
+RETRY_TIMES = 1
+
 # REDIS = {
 #     'url': None,
 #     'host': '47.105.103.8',

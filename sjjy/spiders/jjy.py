@@ -106,7 +106,15 @@ class JjySpider(scrapy.Spider):
                             yield Request(url=img_url, headers=header, callback=self.download_image, meta=meta, priority=10)
 
                         logging.info('下载图片完成后修改Uid状态为2...')
-                        result = self.sjjy.update({'realUid': realUid}, {'$set': {'status': 2}})
+                        print('realUid', realUid)
+                        if self.sjjy.find({'realUid': realUid}, {'_id': 0, 'status': 1})[0].get('status') == 100:
+                            # 重命名
+                            logging.warning('重命名, 存在错误链接, 文件夹后缀 .bak')
+                            # shutil.rmtree(save_location)
+                            self.rename_file(save_location)
+                            print('重命名成功... ')
+                        else:
+                            result = self.sjjy.update({'realUid': realUid}, {'$set': {'status': 2}})
             else:
                 logging.warning('用户id采集完毕, return...')
                 return
@@ -121,3 +129,11 @@ class JjySpider(scrapy.Spider):
             logging.info('已经下载...')
         except FileNotFoundError:
             logging.warning('捕捉到文件名有误...')
+
+    def rename_file(self, file_name):
+        if os.path.exists(file_name):
+            try:
+                target_file = file_name + '.bak'
+                os.rename(file_name, target_file)
+            except:
+                pass

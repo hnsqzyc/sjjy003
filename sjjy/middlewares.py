@@ -172,7 +172,11 @@ class ProxyMiddleware(object):
 
                 logging.warning('Response is empty, re-submitting request')
 
-                return self.resumit_request(request)
+                # 重试一次无效把状态修改成 100
+                realUid = request.meta.get('realUid')
+                spider.sjjy.update({'realUid': realUid}, {'$set': {'status': 100}})
+                logging.warning('重试一次无效把状态修改成 100...')
+                return response
 
             # elif response.status == 302:
             #     print(request)
