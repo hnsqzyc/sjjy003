@@ -25,7 +25,7 @@ ROBOTSTXT_OBEY = False
 # DATA_DIR = r'/mnt/zhangyanchao/'
 DATA_DIR = r'/mnt/sjjy/'
 
-#LOG_FILE = "mySpider.log"
+LOG_FILE = "mySpider.log"
 
 DOWNLOAD_TIMEOUT = 10
 
@@ -83,7 +83,7 @@ REDIRECT_ENALBED = False
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 1
+DOWNLOAD_DELAY = 0.7
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
