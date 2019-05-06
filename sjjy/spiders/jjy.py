@@ -61,7 +61,8 @@ class JjySpider(scrapy.Spider):
 
     def start_requests(self):
         while 1:
-            res = self.sjjy.find({'photo_num': {'$gt': 4, '$ne': 900}, 'status': 1}, {'_id': 0, 'realUid': 1, 'sexValue': 1, 'img_url_li': 1}).limit(100)
+            # res = self.sjjy.find({'photo_num': {'$gt': 4, '$ne': 900}, 'status': 1}, {'_id': 0, 'realUid': 1, 'sexValue': 1, 'img_url_li': 1}).limit(100)
+            res = self.sjjy.find({'status':7, 'photo_num':{'$gte':5, '$ne': 900},'img_url_li':{'$ne':[]}}, {'_id': 0, 'realUid': 1, 'sexValue': 1, 'img_url_li': 1}).limit(100)
             # print(res)
             if res.count():
                 for info in res:
